@@ -23,4 +23,12 @@ public class Character : MonoBehaviour
     {
         _rb.MovePosition(_rb.position + direction * speed * Time.fixedDeltaTime);
     }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        IInteracted interacted;
+
+        if (collision.TryGetComponent(out interacted) && _input.IsInteraction)
+            interacted.Interact();
+    }
 }
